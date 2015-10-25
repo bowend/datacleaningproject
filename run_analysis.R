@@ -65,7 +65,7 @@ avgbysubjectandactivity <- function(x) {
 }
 
 ## takes the location of the original dataset and outputs a file with the step5 tidy dataset
-createdatafile <- function(x) {
+createdatafile <- function(x="UCI HAR Dataset") {
     set4 <- mergeandsubset(x)
     set5 <- avgbysubjectandactivity(set4)
     write.table(set5,"tidydataset.txt",row.names = FALSE)
