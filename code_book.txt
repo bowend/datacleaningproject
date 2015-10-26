@@ -5,42 +5,341 @@ The features selected for this database are derived from the Samsung dataset
 
 The original dataset contained data from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
 
-Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ).
+
+Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
 
 Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals). 
 
 These signals were used to estimate variables of the feature vector for each pattern:  
 '-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
 
-tBodyAcc-XYZ
-tGravityAcc-XYZ
-tBodyAccJerk-XYZ
-tBodyGyro-XYZ
-tBodyGyroJerk-XYZ
-tBodyAccMag
-tGravityAccMag
-tBodyAccJerkMag
-tBodyGyroMag
-tBodyGyroJerkMag
-fBodyAcc-XYZ
-fBodyAccJerk-XYZ
-fBodyGyro-XYZ
-fBodyAccMag
-fBodyAccJerkMag
-fBodyGyroMag
-fBodyGyroJerkMag
+For each of these these signals the mean Mean and Standard deviation (denoted by ‘mean’ and ’std’ respectively)
+For the Fourier transformed variables only the weighted average of the frequency components was calculated to obtain a mean frequency denoted by ‘meanFreq’
 
-This data set consideres variables that were estimated from these signals are: 
+The additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle() variable:
 
-mean(): Mean value
-std(): Standard deviation
 
-Additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle() variable:
+Naming Convention
+=================
 
-gravityMean
-tBodyAccMean
-tBodyAccJerkMean
-tBodyGyroMean
-tBodyGyroJerkMean
+Each variable name has up to 6 out of the following 7 components as follows:
 
-the data set contains the signal 
+angle prefix indicates data is based on the angle between two vectors
+
+t prefix indicates data is based on the derivation of a signal over time
+f prefix indicates data is based on the Fast Fourier Transform of a signal
+
+Body denotes the data is based on a body acceleration signal
+Gravity denotes the data is based on a gravity acceleration signal
+
+Acc denotes data is based on accelerometer signals
+Gyro denotes data is based on gyroscope signals
+AccJerk denotes data is based on a jerk signal (which comes from computed acceleration and angular velocity data) - Jerk data is only calculated for Body acceleration signals
+
+Mag denotes data is based on the magnitude of the vector
+
+mean indicates the data is based on a computed mean
+std indactes the data is based on a computed standard deviation
+meanFreq indicates the data is based on a weighted average of the frequency components
+gravityMean indicates data is based on averaging the signals in a signal window sample.
+
+X suffix denotes the data is based on the component of the vector acting in the X plane
+Y suffix denotes the data is based on the component of the vector acting in the Y plane
+Z suffix denotes the data is based on the component of the vector acting in the Z plane
+
+Variable Order
+==============
+
+In the newly derived dataset…
+
+the first 30 variables (i.e. columns) in the dataset are the average (mean) of the mean and standard deviations of each of the time domain signals in each plane X, Y and Z, taken over every observation in the original dataset for a given subject and activity.
+
+the next 10 variables (i.e. columns) in the dataset are the average (mean) of the mean and standard deviations of each of these time domain magnitudes, taken over every observation in the original dataset for a given subject and activity.
+
+the next 27 variables (i.e. columns) are the means of the mean, standard deviation and meanFreq for the FFT variables in each plane X, Y and Z, taken over every observation in the original dataset for a given subject and activity.
+
+the next 12 variables (i.e. columns) are the means of the mean, standard deviation and meanFreq for the FFT variables in each plane X, Y and Z, taken over every observation in the original dataset for a given subject and activity.
+
+the next 4 variables (i.e. columns) are the for the FFT variables in each plane X, Y and Z, taken over every observation in the original dataset for a given subject and activity.
+
+the final 3 variables (i.e. columns) are the means of the mean, standard deviation and meanFreq for the FFT variables in each plane X, Y and Z, taken over every observation in the original dataset for a given subject and activity.
+
+The data contains fields (i.e. variables) for each for the mean and standard deviation of combinations of these 5 vectors, in each of 3 dimensions (X, Y and Z) 
+
+Records
+=======
+
+the data set contains one record for activity undertaken by each of the 30 subjects in the original experiment - 180 records in total
+
+the rows are ordered as follows (with the naming convention <subjectid>.<activityname>
+
+1.WALKING
+2.WALKING
+3.WALKING
+4.WALKING
+5.WALKING
+6.WALKING
+7.WALKING
+8.WALKING
+9.WALKING
+10.WALKING
+11.WALKING
+12.WALKING
+13.WALKING
+14.WALKING
+15.WALKING
+16.WALKING
+17.WALKING
+18.WALKING
+19.WALKING
+20.WALKING
+21.WALKING
+22.WALKING
+23.WALKING
+24.WALKING
+25.WALKING
+26.WALKING
+27.WALKING
+28.WALKING
+29.WALKING
+30.WALKING
+1.WALKING_UPSTAIRS
+2.WALKING_UPSTAIRS
+3.WALKING_UPSTAIRS
+4.WALKING_UPSTAIRS
+5.WALKING_UPSTAIRS
+6.WALKING_UPSTAIRS
+7.WALKING_UPSTAIRS
+8.WALKING_UPSTAIRS
+9.WALKING_UPSTAIRS
+10.WALKING_UPSTAIRS
+11.WALKING_UPSTAIRS
+12.WALKING_UPSTAIRS
+13.WALKING_UPSTAIRS
+14.WALKING_UPSTAIRS
+15.WALKING_UPSTAIRS
+16.WALKING_UPSTAIRS
+17.WALKING_UPSTAIRS
+18.WALKING_UPSTAIRS
+19.WALKING_UPSTAIRS
+20.WALKING_UPSTAIRS
+21.WALKING_UPSTAIRS
+22.WALKING_UPSTAIRS
+23.WALKING_UPSTAIRS
+24.WALKING_UPSTAIRS
+25.WALKING_UPSTAIRS
+26.WALKING_UPSTAIRS
+27.WALKING_UPSTAIRS
+28.WALKING_UPSTAIRS
+29.WALKING_UPSTAIRS
+30.WALKING_UPSTAIRS
+1.WALKING_DOWNSTAIRS
+2.WALKING_DOWNSTAIRS
+3.WALKING_DOWNSTAIRS
+4.WALKING_DOWNSTAIRS
+5.WALKING_DOWNSTAIRS
+6.WALKING_DOWNSTAIRS
+7.WALKING_DOWNSTAIRS
+8.WALKING_DOWNSTAIRS
+9.WALKING_DOWNSTAIRS
+10.WALKING_DOWNSTAIRS
+11.WALKING_DOWNSTAIRS
+12.WALKING_DOWNSTAIRS
+13.WALKING_DOWNSTAIRS
+14.WALKING_DOWNSTAIRS
+15.WALKING_DOWNSTAIRS
+16.WALKING_DOWNSTAIRS
+17.WALKING_DOWNSTAIRS
+18.WALKING_DOWNSTAIRS
+19.WALKING_DOWNSTAIRS
+20.WALKING_DOWNSTAIRS
+21.WALKING_DOWNSTAIRS
+22.WALKING_DOWNSTAIRS
+23.WALKING_DOWNSTAIRS
+24.WALKING_DOWNSTAIRS
+25.WALKING_DOWNSTAIRS
+26.WALKING_DOWNSTAIRS
+27.WALKING_DOWNSTAIRS
+28.WALKING_DOWNSTAIRS
+29.WALKING_DOWNSTAIRS
+30.WALKING_DOWNSTAIRS
+1.SITTING
+2.SITTING
+3.SITTING
+4.SITTING
+5.SITTING
+6.SITTING
+7.SITTING
+8.SITTING
+9.SITTING
+10.SITTING
+11.SITTING
+12.SITTING
+13.SITTING
+14.SITTING
+15.SITTING
+16.SITTING
+17.SITTING
+18.SITTING
+19.SITTING
+20.SITTING
+21.SITTING
+22.SITTING
+23.SITTING
+24.SITTING
+25.SITTING
+26.SITTING
+27.SITTING
+28.SITTING
+29.SITTING
+30.SITTING
+1.STANDING
+2.STANDING
+3.STANDING
+4.STANDING
+5.STANDING
+6.STANDING
+7.STANDING
+8.STANDING
+9.STANDING
+10.STANDING
+11.STANDING
+12.STANDING
+13.STANDING
+14.STANDING
+15.STANDING
+16.STANDING
+17.STANDING
+18.STANDING
+19.STANDING
+20.STANDING
+21.STANDING
+22.STANDING
+23.STANDING
+24.STANDING
+25.STANDING
+26.STANDING
+27.STANDING
+28.STANDING
+29.STANDING
+30.STANDING
+1.LAYING
+2.LAYING
+3.LAYING
+4.LAYING
+5.LAYING
+6.LAYING
+7.LAYING
+8.LAYING
+9.LAYING
+10.LAYING
+11.LAYING
+12.LAYING
+13.LAYING
+14.LAYING
+15.LAYING
+16.LAYING
+17.LAYING
+18.LAYING
+19.LAYING
+20.LAYING
+21.LAYING
+22.LAYING
+23.LAYING
+24.LAYING
+25.LAYING
+26.LAYING
+27.LAYING
+28.LAYING
+29.LAYING
+30.LAYING
+
+List of Variable Names
+=====================
+tBodyAcc.mean...X
+tBodyAcc.mean...Y
+tBodyAcc.mean...Z
+tBodyAcc.std...X
+tBodyAcc.std...Y
+tBodyAcc.std...Z
+tGravityAcc.mean...X
+tGravityAcc.mean...Y
+tGravityAcc.mean...Z
+tGravityAcc.std...X
+tGravityAcc.std...Y
+tGravityAcc.std...Z
+tBodyAccJerk.mean...X
+tBodyAccJerk.mean...Y
+tBodyAccJerk.mean...Z
+tBodyAccJerk.std...X
+tBodyAccJerk.std...Y
+tBodyAccJerk.std...Z
+tBodyGyro.mean...X
+tBodyGyro.mean...Y
+tBodyGyro.mean...Z
+tBodyGyro.std...X
+tBodyGyro.std...Y
+tBodyGyro.std...Z
+tBodyGyroJerk.mean...X
+tBodyGyroJerk.mean...Y
+tBodyGyroJerk.mean...Z
+tBodyGyroJerk.std...X
+tBodyGyroJerk.std...Y
+tBodyGyroJerk.std...Z
+tBodyAccMag.mean..
+tBodyAccMag.std..
+tGravityAccMag.mean..
+tGravityAccMag.std..
+tBodyAccJerkMag.mean..
+tBodyAccJerkMag.std..
+tBodyGyroMag.mean..
+tBodyGyroMag.std..
+tBodyGyroJerkMag.mean..
+tBodyGyroJerkMag.std..
+fBodyAcc.mean...X
+fBodyAcc.mean...Y
+fBodyAcc.mean...Z
+fBodyAcc.std...X
+fBodyAcc.std...Y
+fBodyAcc.std...Z
+fBodyAcc.meanFreq...X
+fBodyAcc.meanFreq...Y
+fBodyAcc.meanFreq...Z
+fBodyAccJerk.mean...X
+fBodyAccJerk.mean...Y
+fBodyAccJerk.mean...Z
+fBodyAccJerk.std...X
+fBodyAccJerk.std...Y
+fBodyAccJerk.std...Z
+fBodyAccJerk.meanFreq...X
+fBodyAccJerk.meanFreq...Y
+fBodyAccJerk.meanFreq...Z
+fBodyGyro.mean...X
+fBodyGyro.mean...Y
+fBodyGyro.mean...Z
+fBodyGyro.std...X
+fBodyGyro.std...Y
+fBodyGyro.std...Z
+fBodyGyro.meanFreq...X
+fBodyGyro.meanFreq...Y
+fBodyGyro.meanFreq...Z
+fBodyAccMag.mean..
+fBodyAccMag.std..
+fBodyAccMag.meanFreq..
+fBodyBodyAccJerkMag.mean..
+fBodyBodyAccJerkMag.std..
+fBodyBodyAccJerkMag.meanFreq..
+fBodyBodyGyroMag.mean..
+fBodyBodyGyroMag.std..
+fBodyBodyGyroMag.meanFreq..
+fBodyBodyGyroJerkMag.mean..
+fBodyBodyGyroJerkMag.std..
+fBodyBodyGyroJerkMag.meanFreq..
+angle.tBodyAccMean.gravity.
+angle.tBodyAccJerkMean..gravityMean.
+angle.tBodyGyroMean.gravityMean.
+angle.tBodyGyroJerkMean.gravityMean.
+angle.X.gravityMean.
+angle.Y.gravityMean.
+angle.Z.gravityMean.
